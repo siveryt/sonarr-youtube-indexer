@@ -283,7 +283,9 @@ class TorznabHandler(BaseHTTPRequestHandler):
             query = ' '.join(query_parts)
 
             if not query:
-                self._send_error(200, 'Missing query parameter')
+                # Return empty results for empty query (Prowlarr test)
+                xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + format_torznab_xml([], "")
+                self._send_xml(xml)
                 return
 
             logger.info(f"Searching YouTube for: {query}")

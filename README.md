@@ -23,6 +23,8 @@ python youtube_indexer.py
 | API Key | `youtubeindexer` |
 | Categories | `5000` (TV) |
 
+![Prowlarr Settings](instructions.png)
+
 **3. Sync to Sonarr** - Prowlarr will sync the indexer to Sonarr automatically.
 
 **4. Search!** - Go to a YouTube series in Sonarr (like Kurzgesagt), click an episode, and search. Results will come from YouTube.
