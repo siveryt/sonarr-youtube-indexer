@@ -104,12 +104,12 @@ If not using Prowlarr:
    - **Categories**: `5000`
 4. Click **Test** then **Save**
 
-## Companion Project
+## Required Companion Project
 
-This indexer works together with the **[Sonarr YouTube Download Client](https://github.com/YOUR_USERNAME/sonarr-youtube-dl)** which handles the actual downloading.
+**This indexer requires the [Sonarr YouTube Download Client](https://github.com/upggr/sonarr-youtube-dl)** to actually download videos. The indexer only finds videos - you need both projects for the full solution.
 
 **Full Setup:**
-1. Run the YouTube Download Client (port 8181)
+1. Run the [YouTube Download Client](https://github.com/upggr/sonarr-youtube-dl) (port 8181)
 2. Run this YouTube Indexer (port 9117)
 3. Add both to Sonarr/Prowlarr
 4. Search and download YouTube content automatically!
