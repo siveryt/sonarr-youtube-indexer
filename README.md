@@ -65,7 +65,33 @@ python youtube_indexer.py
 
 ## Configuration
 
-Edit the `CONFIG` dict at the top of `youtube_indexer.py`:
+You can configure the indexer using environment variables or by editing the `CONFIG` dict in `youtube_indexer.py`.
+
+### Environment Variables
+
+Environment variables take precedence over hardcoded defaults:
+
+| Environment Variable | Alternative | Default | Description |
+|---------------------|-------------|---------|-------------|
+| `YOUTUBE_INDEXER_HOST` | `HOST` | `0.0.0.0` | Listen address |
+| `YOUTUBE_INDEXER_PORT` | `PORT` | `9117` | Port (default Jackett port) |
+| `YOUTUBE_INDEXER_API_KEY` | `API_KEY` | `youtubeindexer` | API key for authentication |
+| `YOUTUBE_INDEXER_INDEXER_NAME` | `INDEXER_NAME` | `YouTube` | Display name |
+| `YOUTUBE_INDEXER_LOG_LEVEL` | `LOG_LEVEL` | `INFO` | Logging level |
+
+**Example with Docker:**
+```bash
+docker run -e YOUTUBE_INDEXER_PORT=8080 -e YOUTUBE_INDEXER_API_KEY=mykey -p 8080:8080 youtube-indexer
+```
+
+**Example with Python:**
+```bash
+YOUTUBE_INDEXER_PORT=8080 YOUTUBE_INDEXER_API_KEY=mykey python youtube_indexer.py
+```
+
+### Manual Configuration
+
+Alternatively, edit the `CONFIG` dict at the top of `youtube_indexer.py`:
 
 ```python
 CONFIG = {

@@ -31,12 +31,31 @@ except ImportError:
     print("WARNING: yt-dlp not installed. Install with: pip install yt-dlp")
 
 # Configuration
+# Environment variables take precedence over defaults
+
+def get_port_from_env():
+    """Get port from environment variable with error handling.
+    
+    Returns:
+        int: Valid port number between 1-65535, defaults to 9117 if invalid.
+    """
+    port_str = os.getenv("YOUTUBE_INDEXER_PORT", os.getenv("PORT", "9117"))
+    try:
+        port = int(port_str)
+        if port < 1 or port > 65535:
+            print(f"WARNING: Invalid port {port}, must be between 1 and 65535. Using default 9117.")
+            return 9117
+        return port
+    except ValueError:
+        print(f"WARNING: Invalid port value '{port_str}', must be a number. Using default 9117.")
+        return 9117
+
 CONFIG = {
-    "host": "0.0.0.0",
-    "port": 9117,
-    "api_key": "youtubeindexer",
-    "indexer_name": "YouTube",
-    "log_level": "INFO",
+    "host": os.getenv("YOUTUBE_INDEXER_HOST", os.getenv("HOST", "0.0.0.0")),
+    "port": get_port_from_env(),
+    "api_key": os.getenv("YOUTUBE_INDEXER_API_KEY", os.getenv("API_KEY", "youtubeindexer")),
+    "indexer_name": os.getenv("YOUTUBE_INDEXER_INDEXER_NAME", os.getenv("INDEXER_NAME", "YouTube")),
+    "log_level": os.getenv("YOUTUBE_INDEXER_LOG_LEVEL", os.getenv("LOG_LEVEL", "INFO")),
 }
 
 logging.basicConfig(
