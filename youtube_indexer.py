@@ -34,7 +34,11 @@ except ImportError:
 # Environment variables take precedence over defaults
 
 def get_port_from_env():
-    """Get port from environment variable with error handling"""
+    """Get port from environment variable with error handling.
+    
+    Returns:
+        int: Valid port number between 1-65535, defaults to 9117 if invalid.
+    """
     port_str = os.getenv("YOUTUBE_INDEXER_PORT", os.getenv("PORT", "9117"))
     try:
         port = int(port_str)
