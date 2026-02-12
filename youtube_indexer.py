@@ -31,12 +31,13 @@ except ImportError:
     print("WARNING: yt-dlp not installed. Install with: pip install yt-dlp")
 
 # Configuration
+# Environment variables take precedence over defaults
 CONFIG = {
-    "host": "0.0.0.0",
-    "port": 9117,
-    "api_key": "youtubeindexer",
-    "indexer_name": "YouTube",
-    "log_level": "INFO",
+    "host": os.getenv("YOUTUBE_INDEXER_HOST", os.getenv("HOST", "0.0.0.0")),
+    "port": int(os.getenv("YOUTUBE_INDEXER_PORT", os.getenv("PORT", "9117"))),
+    "api_key": os.getenv("YOUTUBE_INDEXER_API_KEY", os.getenv("API_KEY", "youtubeindexer")),
+    "indexer_name": os.getenv("YOUTUBE_INDEXER_INDEXER_NAME", os.getenv("INDEXER_NAME", "YouTube")),
+    "log_level": os.getenv("YOUTUBE_INDEXER_LOG_LEVEL", os.getenv("LOG_LEVEL", "INFO")),
 }
 
 logging.basicConfig(
